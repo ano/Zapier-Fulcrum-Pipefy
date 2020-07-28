@@ -12,45 +12,13 @@ const options = {
       'query': `{
         table_record(id: "${bundle.inputData.table_record_id}") {
           id,
-          assignees {
-              id,
-              email
+          table {
+            id
           },
-          created_at,
-          created_by {
-              id,
-              email
-          },
-          due_date,
-          finished_at,
-          labels {
-              id,
-              name
-          },
-          parent_relations {
-              id,
-              name
-          },
-          path,
           record_fields {
               name,
               value
-          },
-          status {
-              id,
-              name
-          },
-          summary {
-              title,
-              value
-          },
-          table {
-              id,
-              name
-          },
-          title,
-          updated_at,
-          url
+          }
         }
       }`
     }

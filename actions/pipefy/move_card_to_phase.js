@@ -17,11 +17,25 @@ const options = {
         card_id: ${bundle.inputData.card_id},
         destination_phase_id: ${bundle.inputData.phase_id}
       }) {
+        clientMutationId,
         card {
             id,
-            current_phase { id }
-        },
-        clientMutationId
+            title,
+            pipe {
+              id,
+              name
+            },
+            phases_history {
+              phase {
+                id,
+                name
+              }
+            },
+            current_phase {
+              id,
+              name
+            }
+        }
       }
     }`
   }
