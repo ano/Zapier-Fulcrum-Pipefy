@@ -2,8 +2,10 @@ const uuidv4 = z.require('uuid/v4');
 
 // https://api-docs.pipefy.com/reference/mutations/updateCardField/
 
-const requests = Object.keys(bundle.inputData.fields).map((key) => {
-  const value = bundle.inputData.fields[key];
+const keys = Object.keys(bundle.inputData).filter((k) => k != 'card_id');
+const requests = keys.map((key) => {
+  const value = bundle.inputData[key];
+  const normalized_key = key.toLowerCase().replace(' ', '-');
 
   const options = {
     url: 'https://api.pipefy.com/graphql',
@@ -20,7 +22,7 @@ const requests = Object.keys(bundle.inputData.fields).map((key) => {
           updateCardField(input: {
               clientMutationId: "${uuidv4()}",
               card_id: "${bundle.inputData.card_id}",
-              field_id: "${key}",
+              field_id: "${normalized_key}",
               new_value: "${value}"
           }) {
               clientMutationId,
